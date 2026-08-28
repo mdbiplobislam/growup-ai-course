@@ -1,0 +1,346 @@
+/* ===== Standard Lesson Blocks (GrowUp) ===== */
+.ls{margin:22px 0;border-radius:14px;padding:18px 20px;border:1px solid var(--border);background:var(--card-bg);}
+.ls-h{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;}
+.ls-h .ic{font-size:17px;}
+.ls-b{font-size:14.5px;line-height:1.85;}
+.ls-b p{margin:8px 0;}
+.ls-b b{font-weight:700;}
+
+.ls-goal{--k:#4f8cff;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 7%,var(--card-bg));}
+.ls-goal .ls-h{color:var(--k);}
+.ls-goal ul{margin:6px 0 0;padding-left:20px;font-size:14.3px;line-height:1.9;}
+
+.ls-ana{--k:#a06cf0;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 7%,var(--card-bg));}
+.ls-ana .ls-h{color:var(--k);}
+.ls-ana .pair{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+.ls-ana .pair .c{flex:1;min-width:150px;border:1px solid var(--border);border-radius:10px;padding:11px 13px;background:var(--bg);}
+.ls-ana .pair .c .t{font-size:11.5px;font-weight:800;color:var(--k);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px;}
+.ls-ana .pair .c .d{font-size:13.2px;line-height:1.65;}
+
+.ls-step{--k:#3ec6a8;border-left:4px solid var(--k);}
+.ls-step .ls-h{color:var(--k);}
+.ls-step ol{list-style:none;counter-reset:s;margin:0;padding:0;}
+.ls-step ol li{counter-increment:s;position:relative;padding:0 0 16px 44px;font-size:14.3px;line-height:1.8;}
+.ls-step ol li::before{content:counter(s);position:absolute;left:0;top:1px;width:28px;height:28px;border-radius:50%;background:var(--k);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.ls-step ol li::after{content:"";position:absolute;left:13.5px;top:32px;bottom:2px;width:1.5px;background:var(--k);opacity:.28;}
+.ls-step ol li:last-child{padding-bottom:0;}
+.ls-step ol li:last-child::after{display:none;}
+.ls-step ol li>b:first-child{display:block;margin-bottom:2px;}
+
+.ls-ex{--k:#f0a13d;border-left:4px solid var(--k);}
+.ls-ex .ls-h{color:var(--k);}
+.ls-ba{display:flex;flex-wrap:wrap;gap:12px;}
+.ls-ba>div{flex:1;min-width:230px;border-radius:11px;padding:13px 15px;font-size:13.6px;line-height:1.8;}
+.ls-ba .bad{background:color-mix(in srgb,#d94f4f 9%,var(--card-bg));border:1px solid color-mix(in srgb,#d94f4f 35%,transparent);}
+.ls-ba .good{background:color-mix(in srgb,#14a800 9%,var(--card-bg));border:1px solid color-mix(in srgb,#14a800 35%,transparent);}
+.ls-ba .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;gap:6px;align-items:center;}
+.ls-ba .bad .lbl{color:#d94f4f;} .ls-ba .good .lbl{color:#14a800;}
+.ls-note{margin-top:11px;font-size:13px;color:var(--text-light);line-height:1.75;}
+
+.ls-warn{--k:#d94f4f;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 7%,var(--card-bg));}
+.ls-warn .ls-h{color:var(--k);}
+
+.ls-try{--k:#e35d8a;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 6%,var(--card-bg));}
+.ls-try .ls-h{color:var(--k);}
+.ls-try .task{font-size:14.3px;line-height:1.85;}
+.ls-try .ans{margin-top:10px;}
+.ls-try summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--k);padding:7px 12px;border:1px dashed var(--k);border-radius:8px;display:inline-block;list-style:none;}
+.ls-try summary::-webkit-details-marker{display:none;}
+.ls-try details[open] summary{margin-bottom:9px;}
+.ls-try .sol{font-size:13.6px;line-height:1.8;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 14px;}
+figure.lsfig{margin:20px 0;}
+figure.lsfig .box{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--card-bg);}
+figure.lsfig figcaption{font-size:12px;color:var(--text-light);margin-top:7px;text-align:center;}
+/* ===== GrowUp Class Page v2 — Lanes, Video, Quiz, Homework, Outcome ===== */
+
+/* ---- 1. চার লেন: বাস্তব কাজে কোথায় লাগবে ---- */
+.ls-lane{--k:#5b6cff;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 5%,var(--card-bg));}
+.ls-lane .ls-h{color:var(--k);}
+.ls-lane .lane-lead{font-size:14px;line-height:1.8;margin-bottom:14px;}
+.ls-lane .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+.ls-lane .ln{--c:#4f8cff;border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-top:3px solid var(--c);
+  border-radius:11px;padding:13px 14px;background:var(--bg);}
+.ls-lane .ln .hd{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:var(--c);margin-bottom:8px;}
+.ls-lane .ln .hd .ic{font-size:16px;}
+.ls-lane .ln .row{font-size:12.9px;line-height:1.65;margin-bottom:7px;}
+.ls-lane .ln .row:last-child{margin-bottom:0;}
+.ls-lane .ln .lbl{display:block;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--text-light);margin-bottom:2px;}
+
+/* ---- 2. ভিডিও লার্নিং ---- */
+.ls-vid{--k:#e0475c;border-left:4px solid var(--k);}
+.ls-vid .ls-h{color:var(--k);}
+.ls-vid .slot{border:2px dashed color-mix(in srgb,var(--k) 45%,transparent);border-radius:12px;padding:16px 18px;
+  background:color-mix(in srgb,var(--k) 5%,var(--card-bg));margin-bottom:16px;}
+.ls-vid .slot .st{font-size:13.4px;font-weight:800;margin-bottom:5px;}
+.ls-vid .slot .sd{font-size:12.6px;line-height:1.7;color:var(--text-light);}
+.ls-vid .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.ls-vid .vc{max-width:430px;}
+.ls-vid .vc{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card-bg);}
+.ls-vid .vt{position:relative;aspect-ratio:16/9;background:#0d0d10;cursor:pointer;display:block;width:100%;border:0;padding:0;}
+.ls-vid .vt img{width:100%;height:100%;object-fit:cover;display:block;opacity:.88;}
+.ls-vid .vt:hover img{opacity:1;}
+.ls-vid .vt .pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.ls-vid .vt .pl span{width:54px;height:38px;border-radius:9px;background:rgba(220,40,55,.92);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 3px 14px rgba(0,0,0,.4);}
+.ls-vid .vt:hover .pl span{background:#e62b3a;}
+.ls-vid .vc iframe{width:100%;aspect-ratio:16/9;border:0;display:block;}
+.ls-vid .vm{padding:11px 13px;}
+.ls-vid .vm .vn{font-size:13.2px;font-weight:700;line-height:1.5;margin-bottom:4px;}
+.ls-vid .vm .vs{font-size:11.6px;color:var(--text-light);}
+.ls-vid .vm .vw{font-size:12.4px;line-height:1.6;margin-top:7px;padding-top:7px;border-top:1px dashed var(--border);}
+.ls-vid .vnote{margin-top:12px;font-size:12.3px;color:var(--text-light);line-height:1.7;}
+
+/* ---- 3. ইন্টারঅ্যাকটিভ কুইজ ---- */
+.ls-quiz{--k:#2fa4a0;border-left:4px solid var(--k);}
+.ls-quiz .ls-h{color:var(--k);}
+.ls-quiz .qz-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;
+  background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:9px 13px;}
+.ls-quiz .qz-bar .sc{font-size:13px;font-weight:800;color:var(--k);}
+.ls-quiz .qz-bar .track{flex:1;min-width:110px;height:7px;border-radius:99px;background:var(--border);overflow:hidden;}
+.ls-quiz .qz-bar .fill{height:100%;width:0;background:var(--k);border-radius:99px;transition:width .3s;}
+.ls-quiz .qz-bar .rs{font-size:11.6px;font-weight:700;color:var(--text-light);background:transparent;
+  border:1px solid var(--border);border-radius:7px;padding:4px 10px;cursor:pointer;}
+.ls-quiz .qz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px dashed var(--border);}
+.ls-quiz .qz-q:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+.ls-quiz .qz-t{font-size:14.2px;font-weight:700;line-height:1.75;margin-bottom:10px;}
+.ls-quiz .qz-t .n{display:inline-flex;width:23px;height:23px;border-radius:50%;background:var(--k);color:#fff;
+  font-size:12px;font-weight:800;align-items:center;justify-content:center;margin-right:8px;vertical-align:1px;}
+.ls-quiz .qz-o{display:block;width:100%;text-align:left;font:inherit;font-size:13.5px;line-height:1.6;
+  border:1px solid var(--border);background:var(--bg);color:inherit;border-radius:9px;padding:10px 13px;
+  margin-bottom:7px;cursor:pointer;transition:border-color .15s,background .15s;}
+.ls-quiz .qz-o:hover:not(.done){border-color:var(--k);}
+.ls-quiz .qz-o .mk{float:right;font-weight:800;margin-left:10px;}
+.ls-quiz .qz-o.ok{background:color-mix(in srgb,#14a800 12%,var(--card-bg));border-color:#14a800;}
+.ls-quiz .qz-o.no{background:color-mix(in srgb,#d94f4f 11%,var(--card-bg));border-color:#d94f4f;}
+.ls-quiz .qz-q.locked .qz-o{cursor:default;}
+.ls-quiz .qz-why{display:none;margin-top:9px;font-size:13px;line-height:1.75;background:var(--bg);
+  border:1px solid var(--border);border-left:3px solid var(--k);border-radius:9px;padding:11px 13px;}
+.ls-quiz .qz-q.locked .qz-why{display:block;}
+.ls-quiz .qz-done{display:none;margin-top:16px;border-radius:11px;padding:13px 15px;font-size:13.6px;line-height:1.75;
+  background:color-mix(in srgb,var(--k) 9%,var(--card-bg));border:1px solid color-mix(in srgb,var(--k) 40%,transparent);}
+.ls-quiz.finished .qz-done{display:block;}
+
+/* ---- 4. হোমওয়ার্ক + রুব্রিক ---- */
+.ls-hw{--k:#7a5cf0;border-left:4px solid var(--k);}
+.ls-hw .ls-h{color:var(--k);}
+.ls-hw .hw-task{background:color-mix(in srgb,var(--k) 6%,var(--card-bg));border:1px solid color-mix(in srgb,var(--k) 28%,transparent);
+  border-radius:11px;padding:13px 15px;font-size:14px;line-height:1.8;margin-bottom:13px;}
+.ls-hw .hw-meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:13px;}
+.ls-hw .hw-meta .m{flex:1;min-width:140px;border:1px solid var(--border);border-radius:9px;padding:9px 12px;background:var(--bg);}
+.ls-hw .hw-meta .m .l{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-light);}
+.ls-hw .hw-meta .m .v{font-size:13.2px;font-weight:700;margin-top:3px;}
+.ls-hw table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px;}
+.ls-hw th,.ls-hw td{border:1px solid var(--border);padding:8px 11px;text-align:left;line-height:1.6;}
+.ls-hw th{background:var(--bg);font-weight:800;font-size:12.2px;}
+.ls-hw td.mk{text-align:center;font-weight:800;white-space:nowrap;}
+.ls-hw tr.tot td{background:color-mix(in srgb,var(--k) 8%,var(--card-bg));font-weight:800;}
+
+/* ---- 5. আউটকাম চেকলিস্ট ---- */
+.ls-out{--k:#14a800;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 5%,var(--card-bg));}
+.ls-out .ls-h{color:var(--k);}
+.ls-out .oc{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;font:inherit;font-size:13.8px;
+  line-height:1.7;color:inherit;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;
+  padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,background .15s;}
+.ls-out .oc:hover{border-color:var(--k);}
+.ls-out .oc .bx{flex:0 0 20px;width:20px;height:20px;border-radius:6px;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;margin-top:1px;}
+.ls-out .oc.on{background:color-mix(in srgb,var(--k) 9%,var(--card-bg));border-color:var(--k);}
+.ls-out .oc.on .bx{background:var(--k);border-color:var(--k);}
+.ls-out .oc.on .tx{text-decoration:line-through;opacity:.72;}
+.ls-out .port{margin-top:13px;border:1px dashed var(--k);border-radius:11px;padding:12px 14px;
+  font-size:13.2px;line-height:1.75;background:var(--card-bg);}
+.ls-out .port .pt{font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--k);margin-bottom:5px;}
+.ls-out .oprog{font-size:12.4px;color:var(--text-light);margin-top:10px;}
+/* ===== GrowUp Classroom Layer v3 — Run sheet, Demo, Lab, Trainer notes ===== */
+
+/* ---- trainer-only visibility ---- */
+.ls-teach{position:relative;}
+.ls-teach::before{content:"👩‍🏫 ট্রেইনার";position:absolute;top:-9px;right:14px;font-size:10px;font-weight:800;
+  letter-spacing:.04em;background:var(--k);color:#fff;border-radius:99px;padding:2px 10px;}
+body:not(.trainer-on) .ls-teach{display:none;}
+.gu-tbtn{position:fixed;left:18px;bottom:18px;z-index:60;font:inherit;font-size:12.5px;font-weight:700;
+  border:1px solid var(--border);background:var(--card-bg);color:var(--text-light);border-radius:99px;
+  padding:9px 16px;cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.13);display:flex;align-items:center;gap:7px;}
+.gu-tbtn:hover{border-color:#d97706;}
+body.trainer-on .gu-tbtn{background:#d97706;border-color:#d97706;color:#fff;}
+
+/* ---- copyable prompt box ---- */
+.gu-copy{margin:12px 0;border:1px solid var(--border);border-radius:11px;overflow:hidden;background:var(--code-bg);}
+.gu-copy .hd{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--bg);
+  border-bottom:1px solid var(--border);font-size:11.5px;font-weight:800;letter-spacing:.03em;}
+.gu-copy .hd button{margin-left:auto;font:inherit;font-size:11.5px;font-weight:700;border:1px solid var(--border);
+  background:var(--card-bg);color:inherit;border-radius:7px;padding:3px 11px;cursor:pointer;}
+.gu-copy .hd button:hover{border-color:var(--accent);}
+.gu-copy pre{margin:0;padding:12px 14px;font-size:12.4px;line-height:1.65;white-space:pre-wrap;word-break:break-word;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+
+/* ---- 1. ক্লাস রান-শিট ---- */
+.ls-run{--k:#d97706;border-left:4px solid var(--k);}
+.ls-run .ls-h{color:var(--k);}
+.ls-run .rmeta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:13px;}
+.ls-run .rmeta .m{flex:1;min-width:130px;border:1px solid var(--border);border-radius:9px;padding:9px 12px;background:var(--bg);}
+.ls-run .rmeta .l{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-light);}
+.ls-run .rmeta .v{font-size:13.2px;font-weight:700;margin-top:3px;}
+.ls-run table{width:100%;border-collapse:collapse;font-size:12.8px;}
+.ls-run th,.ls-run td{border:1px solid var(--border);padding:8px 10px;text-align:left;line-height:1.6;vertical-align:top;}
+.ls-run th{background:var(--bg);font-weight:800;font-size:12px;}
+.ls-run td.tm{white-space:nowrap;font-weight:800;color:var(--k);width:1%;}
+.ls-run tr.brk td{background:color-mix(in srgb,var(--k) 8%,var(--card-bg));font-style:italic;}
+.ls-run .rnote{margin-top:11px;font-size:12.4px;line-height:1.7;color:var(--text-light);}
+
+/* ---- 2. লাইভ ডেমো স্ক্রিপ্ট ---- */
+.ls-demo{--k:#0284c7;border-left:4px solid var(--k);}
+.ls-demo .ls-h{color:var(--k);}
+.ls-demo .setup{background:color-mix(in srgb,var(--k) 7%,var(--card-bg));border:1px solid color-mix(in srgb,var(--k) 30%,transparent);
+  border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.75;margin-bottom:14px;}
+.ls-demo .setup b{color:var(--k);}
+.ls-demo ol{list-style:none;counter-reset:d;margin:0;padding:0;}
+.ls-demo ol li{counter-increment:d;position:relative;padding:0 0 18px 42px;font-size:13.7px;line-height:1.75;}
+.ls-demo ol li::before{content:counter(d);position:absolute;left:0;top:0;width:27px;height:27px;border-radius:8px;
+  background:var(--k);color:#fff;font-weight:800;font-size:12.5px;display:flex;align-items:center;justify-content:center;}
+.ls-demo ol li::after{content:"";position:absolute;left:13px;top:31px;bottom:4px;width:1.5px;background:var(--k);opacity:.25;}
+.ls-demo ol li:last-child{padding-bottom:0;}
+.ls-demo ol li:last-child::after{display:none;}
+.ls-demo ol li>b:first-child{display:block;margin-bottom:3px;}
+.ls-demo .say{border-left:3px solid var(--k);padding:2px 0 2px 11px;margin:7px 0;font-size:13.2px;
+  line-height:1.75;font-style:italic;opacity:.92;}
+.ls-demo .oops{margin-top:8px;background:color-mix(in srgb,#d94f4f 8%,var(--card-bg));
+  border:1px dashed color-mix(in srgb,#d94f4f 45%,transparent);border-radius:9px;padding:9px 12px;font-size:12.6px;line-height:1.7;}
+.ls-demo .oops b{color:#d94f4f;}
+
+/* ---- 3. হাতে-কলমে ল্যাব ---- */
+.ls-lab{--k:#4f46e5;border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 4%,var(--card-bg));}
+.ls-lab .ls-h{color:var(--k);}
+.ls-lab .lmeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px;}
+.ls-lab .lmeta span{font-size:11.8px;font-weight:700;border:1px solid color-mix(in srgb,var(--k) 35%,transparent);
+  background:var(--card-bg);border-radius:99px;padding:4px 12px;}
+.ls-lab ol{margin:0;padding-left:20px;font-size:13.8px;line-height:1.85;}
+.ls-lab ol li{margin-bottom:5px;}
+.ls-lab .stuck{margin-top:13px;border:1px solid var(--border);border-radius:10px;padding:11px 13px;background:var(--card-bg);}
+.ls-lab .stuck .t{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--k);margin-bottom:6px;}
+.ls-lab .stuck ul{margin:0;padding-left:19px;font-size:12.9px;line-height:1.75;}
+.ls-lab .check{margin-top:11px;font-size:12.9px;line-height:1.7;background:color-mix(in srgb,var(--k) 8%,var(--card-bg));
+  border-radius:9px;padding:10px 13px;}
+.ls-lab .check b{color:var(--k);}
+
+/* ---- 4. ট্রেইনার নোট ---- */
+.ls-tnote{--k:#64748b;border-left:4px solid var(--k);}
+.ls-tnote .ls-h{color:var(--k);}
+.ls-tnote .qa{border-bottom:1px dashed var(--border);padding:10px 0;}
+.ls-tnote .qa:last-of-type{border-bottom:0;padding-bottom:0;}
+.ls-tnote .qa .q{font-size:13.5px;font-weight:700;line-height:1.7;margin-bottom:4px;}
+.ls-tnote .qa .q::before{content:"প্রশ্ন · ";font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--k);}
+.ls-tnote .qa .a{font-size:13.2px;line-height:1.8;}
+.ls-tnote .qa .a::before{content:"উত্তর · ";font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--k);}
+.ls-tnote .miss{margin-top:13px;background:color-mix(in srgb,var(--k) 8%,var(--card-bg));border-radius:10px;padding:11px 13px;}
+.ls-tnote .miss .t{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--k);margin-bottom:6px;}
+.ls-tnote .miss ul{margin:0;padding-left:19px;font-size:12.9px;line-height:1.8;}
+/* ===== GrowUp Masterclass Layer v4 — Mentor note, Income path, CBT&A mapping ===== */
+
+/* ---- 1. প্রশিক্ষকের ফিল্ড নোট ---- */
+.ls-mentor{--k:#0f766e;border:1px solid color-mix(in srgb,var(--k) 32%,transparent);border-left:4px solid var(--k);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--k) 8%,var(--card-bg)) 0%,var(--card-bg) 62%);}
+.ls-mentor .mn-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:13px;margin-bottom:13px;
+  border-bottom:1px solid color-mix(in srgb,var(--k) 22%,transparent);}
+.ls-mentor .mn-av{flex:0 0 42px;width:42px;height:42px;border-radius:50%;background:var(--k);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;}
+.ls-mentor .mn-id{min-width:0;flex:1;}
+.ls-mentor .mn-name{font-size:15px;font-weight:800;line-height:1.3;}
+.ls-mentor .mn-cred{font-size:11.4px;color:var(--text-light);line-height:1.55;margin-top:2px;}
+.ls-mentor .mn-tag{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+  background:var(--k);border-radius:99px;padding:4px 12px;white-space:nowrap;}
+.ls-mentor .ls-b{font-size:14.4px;line-height:1.9;}
+.ls-mentor .ls-b p{margin:9px 0;}
+.ls-mentor .mn-take{margin-top:14px;background:color-mix(in srgb,var(--k) 10%,var(--card-bg));
+  border-radius:10px;padding:12px 14px;font-size:13.6px;line-height:1.8;}
+.ls-mentor .mn-take b{color:var(--k);}
+.ls-mentor .mn-edit{margin-top:10px;font-size:11.6px;color:var(--text-light);line-height:1.6;font-style:italic;}
+
+/* ---- 2. আজকের দক্ষতা → আয় ---- */
+.ls-earn{--k:#15803d;border-left:4px solid var(--k);}
+.ls-earn .ls-h{color:var(--k);}
+.ls-earn .pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:4px 0 15px;}
+.ls-earn .pk .p{border:1px solid var(--border);border-top:3px solid var(--k);border-radius:11px;padding:13px 14px;background:var(--bg);}
+.ls-earn .pk .p.mid{border-color:color-mix(in srgb,var(--k) 55%,transparent);
+  background:color-mix(in srgb,var(--k) 7%,var(--card-bg));}
+.ls-earn .pk .n{font-size:13px;font-weight:800;color:var(--k);margin-bottom:3px;}
+.ls-earn .pk .w{font-size:11px;color:var(--text-light);margin-bottom:9px;}
+.ls-earn .pk ul{margin:0;padding-left:17px;font-size:12.7px;line-height:1.7;}
+.ls-earn .pk .t{margin-top:9px;padding-top:8px;border-top:1px dashed var(--border);font-size:12px;font-weight:700;}
+.ls-earn .rate{background:color-mix(in srgb,var(--k) 7%,var(--card-bg));border:1px solid color-mix(in srgb,var(--k) 28%,transparent);
+  border-radius:11px;padding:13px 15px;font-size:13.6px;line-height:1.85;margin-bottom:13px;}
+.ls-earn .rate .t{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--k);margin-bottom:6px;}
+.ls-earn ol.first{margin:0;padding-left:20px;font-size:13.7px;line-height:1.85;}
+.ls-earn ol.first li{margin-bottom:5px;}
+.ls-earn .cav{margin-top:12px;font-size:12.3px;line-height:1.75;color:var(--text-light);
+  border-left:3px solid var(--border);padding-left:11px;}
+
+/* ---- 3. CBT&A কম্পিটেন্সি ম্যাপিং ---- */
+.ls-comp{--k:#475569;border-left:4px solid var(--k);}
+.ls-comp .ls-h{color:var(--k);}
+.ls-comp .cmeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.ls-comp .cmeta span{font-size:11.5px;font-weight:700;border:1px solid var(--border);background:var(--bg);
+  border-radius:7px;padding:5px 11px;}
+.ls-comp table{width:100%;border-collapse:collapse;font-size:12.7px;}
+.ls-comp th,.ls-comp td{border:1px solid var(--border);padding:8px 10px;text-align:left;line-height:1.65;vertical-align:top;}
+.ls-comp th{background:var(--bg);font-weight:800;font-size:12px;}
+.ls-comp td.m{white-space:nowrap;font-weight:700;color:var(--k);}
+.ls-comp .ev{margin-top:12px;background:color-mix(in srgb,var(--k) 8%,var(--card-bg));border-radius:10px;padding:11px 13px;}
+.ls-comp .ev .t{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--k);margin-bottom:6px;}
+.ls-comp .ev ul{margin:0;padding-left:19px;font-size:12.8px;line-height:1.8;}
+/* ===== GrowUp Instructor Identity v5 — About, Journey, Frameworks ===== */
+
+/* ---- instructor card ---- */
+.gu-about{margin:26px 0 8px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card-bg);}
+.gu-about .ab-top{display:flex;gap:20px;flex-wrap:wrap;align-items:center;padding:22px 24px;
+  background:linear-gradient(135deg,#0f2a4a 0%,#152046 55%,#241a45 100%);color:#eef2ff;}
+.gu-about .ab-ph{flex:0 0 108px;width:108px;height:108px;border-radius:50%;overflow:hidden;
+  border:3px solid rgba(255,255,255,.28);box-shadow:0 6px 22px rgba(0,0,0,.35);}
+.gu-about .ab-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.gu-about .ab-id{flex:1;min-width:240px;}
+.gu-about .ab-name{font-size:24px;font-weight:800;letter-spacing:.02em;line-height:1.2;}
+.gu-about .ab-role{font-size:13.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#7dd3fc;margin-top:5px;}
+.gu-about .ab-pill{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+.gu-about .ab-pill span{font-size:11.6px;font-weight:700;border:1px solid rgba(255,255,255,.26);
+  border-radius:99px;padding:4px 12px;background:rgba(255,255,255,.07);}
+.gu-about .ab-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.gu-about .ab-stats .s{background:var(--card-bg);padding:13px 15px;}
+.gu-about .ab-stats .n{font-size:19px;font-weight:800;color:var(--accent);}
+.gu-about .ab-stats .l{font-size:11.6px;color:var(--text-light);margin-top:3px;line-height:1.5;}
+.gu-about .ab-body{padding:18px 24px 20px;font-size:14.3px;line-height:1.9;}
+.gu-about .ab-body p{margin:9px 0;}
+.gu-about .ab-quote{margin-top:14px;border-left:4px solid var(--accent);padding:4px 0 4px 14px;
+  font-size:15px;font-weight:700;line-height:1.7;}
+.gu-about .ab-quote small{display:block;font-size:11.8px;font-weight:600;color:var(--text-light);margin-top:5px;}
+
+/* ---- interactive journey ---- */
+.gu-jour{margin:26px 0;border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:var(--card-bg);}
+.gu-jour .jt{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;}
+.gu-jour .jh{font-size:16.5px;font-weight:800;margin-bottom:14px;}
+.gu-jour .jrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;}
+.gu-jour .jn{flex:0 0 auto;position:relative;font:inherit;font-size:12.8px;font-weight:700;cursor:pointer;
+  border:1.5px solid var(--border);background:var(--bg);color:inherit;border-radius:99px;padding:9px 16px;
+  display:flex;align-items:center;gap:7px;white-space:nowrap;transition:border-color .15s,background .15s;}
+.gu-jour .jn .i{font-size:15px;}
+.gu-jour .jn:hover{border-color:var(--jc);}
+.gu-jour .jn.on{border-color:var(--jc);background:color-mix(in srgb,var(--jc) 14%,var(--card-bg));color:var(--jc);}
+.gu-jour .jsep{flex:0 0 auto;align-self:center;color:var(--text-light);opacity:.55;font-size:13px;}
+.gu-jour .jd{margin-top:14px;border-radius:12px;padding:15px 17px;background:var(--bg);
+  border:1px solid var(--border);border-left:4px solid var(--jc,var(--accent));}
+.gu-jour .jd .k{font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--jc,var(--accent));margin-bottom:6px;}
+.gu-jour .jd .t{font-size:15px;font-weight:800;margin-bottom:7px;}
+.gu-jour .jd .b{font-size:13.8px;line-height:1.85;}
+.gu-jour .jd .q{margin-top:10px;font-size:13.2px;line-height:1.75;font-style:italic;
+  border-left:3px solid var(--border);padding-left:11px;}
+
+/* ---- framework strips ---- */
+.gu-fw{margin:24px 0;border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:var(--card-bg);}
+.gu-fw .fh{font-size:15.5px;font-weight:800;margin-bottom:3px;}
+.gu-fw .fs{font-size:12.6px;color:var(--text-light);line-height:1.7;margin-bottom:14px;}
+.gu-fw figure{margin:0;}
+.gu-fw figcaption{font-size:12px;color:var(--text-light);margin-top:8px;text-align:center;line-height:1.6;}
+.gu-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
