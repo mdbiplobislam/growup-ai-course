@@ -5,7 +5,18 @@
 var KEY='ai-b01-cms-v2', mem={};
 var store={
   read:function(){ try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):(mem.d||null);}catch(e){return mem.d||null;} },
-  write:function(d){ mem.d=d; try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){} }
+  write:function(d){
+    mem.d=d;
+    try{ localStorage.setItem(KEY,JSON.stringify(d)); return true; }
+    catch(e){
+      // ব্রাউজারের সেভ-জায়গা (localStorage) ভরে গেছে — সাধারণত বড় ছবির কারণে।
+      // চুপচাপ ব্যর্থ না হয়ে ব্যবহারকারীকে সরাসরি জানানো হচ্ছে।
+      if(typeof toast==='function') toast('❌ সংরক্ষণ ব্যর্থ! জায়গা ভরে গেছে (বড় ছবি?) — ছবি ছোট করে আবার চেষ্টা করুন, অথবা ⬇ এই দিনের JSON দিয়ে ব্যাকআপ নিন।');
+      else alert('সংরক্ষণ ব্যর্থ — ব্রাউজারের সেভ-জায়গা ভরে গেছে।');
+      console.error('CMS save failed:', e);
+      return false;
+    }
+  }
 };
 function seedHash(o){var s=JSON.stringify(o)||'',h=5381;for(var i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return s.length+'-'+h.toString(36);}
 
@@ -45,6 +56,27 @@ function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 function nl2br(s){return esc(s).replace(/\n/g,'<br>');}
 function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
 function toast(m){var t=document.getElementById('ed-toast');t.textContent=m;t.classList.add('show');clearTimeout(t.__h);t.__h=setTimeout(function(){t.classList.remove('show');},1900);}
+
+/* ছবি localStorage-এ বসানোর আগে ছোট করা হয় (max width + JPEG কম্প্রেশন) —
+   এতে একটা ২-৪MB ফটো ~১৫০-৩০০KB-তে নেমে আসে, তাই সেভ-জায়গা (৫MB) সহজে ভরে না। */
+function resizeImage(file,maxW,quality,cb){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var img=new Image();
+    img.onload=function(){
+      var w=img.width,h=img.height;
+      if(w>maxW){ h=Math.round(h*maxW/w); w=maxW; }
+      var cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      var ctx=cv.getContext('2d'); ctx.drawImage(img,0,0,w,h);
+      var isPng=/png/.test(file.type)&&file.size<300000; // ছোট PNG (আইকন/লোগো) হলে স্বচ্ছতা রাখা হয়
+      try{ cb(cv.toDataURL(isPng?'image/png':'image/jpeg', isPng?undefined:(quality||0.82))); }
+      catch(e){ cb(rd.result); } // ক্যানভাস ব্যর্থ হলে মূল ফাইলই ব্যবহার হবে
+    };
+    img.onerror=function(){ cb(rd.result); };
+    img.src=rd.result;
+  };
+  rd.readAsDataURL(file);
+}
 
 /* ---------- block render ---------- */
 function blockHTML(b){
@@ -137,7 +169,11 @@ function wireForm(t,r){
   wirePickers(r);
   if(t==='image'){
     var dp=r.querySelector('#f-drop'),fi=r.querySelector('#f-file'),pv=r.querySelector('#f-prev');
-    var ld=function(f){if(!f||!/^image\//.test(f.type))return;var rd=new FileReader();rd.onload=function(){pv.innerHTML='<img src="'+rd.result+'">';};rd.readAsDataURL(f);};
+    var ld=function(f){
+      if(!f||!/^image\//.test(f.type))return;
+      pv.innerHTML='<div class="hint">ছবি প্রক্রিয়া হচ্ছে…</div>';
+      resizeImage(f,1280,0.82,function(dataUrl){ pv.innerHTML='<img src="'+dataUrl+'">'; });
+    };
     dp.onclick=function(){fi.click();}; fi.onchange=function(){ld(fi.files[0]);};
     dp.ondragover=function(e){e.preventDefault();dp.classList.add('over');};
     dp.ondragleave=function(){dp.classList.remove('over');};
@@ -344,6 +380,19 @@ function openSettings(){
 /* ---------- export / import ---------- */
 function dl(n,c,m){var b=new Blob([c],{type:m||'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},400);}
 function expJSON(){dl('course-notes-content.json',JSON.stringify(DB,null,1),'application/json');toast('JSON ডাউনলোড হচ্ছে…');}
+/* বর্তমান দিনের এডিট সরাসরি data/ins/NN.json ফরম্যাটে ডাউনলোড হয় —
+   এই ফাইলটা repo-র data/ins/ ফোল্ডারে বসিয়ে update-site.bat চালালে
+   এডিট স্থায়ীভাবে (সব ব্রাউজার/ছাত্রের জন্য) সাইটে যুক্ত হয়ে যায়। */
+function expDayJSON(){
+  var key=curKey();
+  if(key==='home'){ toast('হোম পেজের জন্য এই এক্সপোর্ট নেই — কোনো দিনের পেজে গিয়ে চেষ্টা করুন।'); return; }
+  var p=page(key);
+  var ins={}; Object.keys(p.ins||{}).forEach(function(sid){ if(p.ins[sid]&&p.ins[sid].length) ins[sid]=p.ins[sid]; });
+  if(!Object.keys(ins).length){ toast('এই দিনে নতুন করে যোগ করা ব্লক নেই (শুধু ins ব্লক এক্সপোর্ট হয়; সরাসরি টেক্সট-এডিট নয়)।'); }
+  var pad=(''+key).replace(/[^0-9]/g,'').padStart(2,'0');
+  dl(pad+'.json', JSON.stringify({ins:ins},null,1), 'application/json');
+  toast('⬇ '+pad+'.json ডাউনলোড হচ্ছে — data/ins/ ফোল্ডারে বসিয়ে update-site.bat চালান');
+}
 function expHTML(){
   if(editingSec) stopEdit(false);
   var doc=document.documentElement.cloneNode(true);
@@ -391,6 +440,7 @@ function init(){
     '<button type="button" class="ed-btn" data-a="set">⚙️ কাস্টমাইজ</button>'+
     '<button type="button" class="ed-btn" data-a="eh">⬇ HTML এক্সপোর্ট</button>'+
     '<button type="button" class="ed-btn" data-a="ej">⬇ JSON এক্সপোর্ট</button>'+
+    '<button type="button" class="ed-btn" data-a="edj" title="এই দিনের নতুন ব্লক data/ins/NN.json আকারে">⬇ এই দিনের JSON</button>'+
     '<button type="button" class="ed-btn" data-a="ij">⬆ JSON ইমপোর্ট</button>'+
     '<button type="button" class="ed-btn" data-a="rs">♻️ রিসেট</button>'+
     '</div><button type="button" class="ed-btn primary" data-a="tg">✏️ এডিট মোড</button>';
@@ -440,7 +490,7 @@ function init(){
       b.classList.toggle('on',on); b.textContent=on?'✅ এডিট শেষ':'✏️ এডিট মোড';
       toast(on?'এডিট মোড চালু':'এডিট মোড বন্ধ'); }
     else if(a==='set')openSettings(); else if(a==='eh')expHTML();
-    else if(a==='ej')expJSON(); else if(a==='ij')impJSON(); else if(a==='rs')resetAll();
+    else if(a==='ej')expJSON(); else if(a==='edj')expDayJSON(); else if(a==='ij')impJSON(); else if(a==='rs')resetAll();
   });
 
   document.addEventListener('click',function(e){
